@@ -4,25 +4,38 @@
 
 - EmptyListError: exceção levantada quando uma operação é realizada em uma lista encadeada vazia;
 
-- MinhaListaEncadeada: classe que representa a implementação pedida para o trabalhinho 1, optei por criar uma lista encadeada NÃO circular, contendo algumas peculiaridades exclusivas que serão documentadas abaixo:
+- MinhaListaDuplamenteEncadeada: classe que representa a implementação pedida para o trabalhinho 1
 
-# Peculiaridades da implementação
+# Funções:
 
-- A implementação da MinhaListaEncadeada é dividida em duas partes
+## Operações de cursor (\_\_privadas)
 
-  1. operações de cursor: algumas funções complementares que auxiliarão nas funções principais, estas não possuem tratamento de erros já que serão utilizadas dentro das funções princípais, responsáveis por possíveis verificações;
+1. avancarKPosicoes:
 
-  2. operações de lista: funções de acessos,incerções e remoções feitas na lista.
+   - recebe como parametro o número de posições a serem avançadas;
+   - avança o cursor conforme o número de posições passadas, ou até que o Elemento atual do cursor não possua sucessor;
 
-1. acessarAtual - retorna o valor do Node em que o cursor "se localiza";
+2. retrocederKPosicoes:
+
+   - recebe como parâmetro o número de posições a serem regredidas;
+   - regride o cursor conforme o número de posições passadas, ou até que o Elemento atual do cursor não possua antecessor;
+
+3. irParaPrimeiro:
+
+   - cursor aponta para o elemento apontado por inicio
+   - caso um estiver vazio, ambos estao vazios, e portanto, nada acontece
+
+4. irParaUltimo:
+
+   - cursor aponta para o elemento apontado pelo fim
+   - caso um estiver vazio, ambos estao vazios, e portanto, nada acontece
+
+## Funções de manipulação na lista
+
+1. acessarAtual - caso o cursor apontar para um elemento, retorna o valor do elemento apontado;
 
 2. inserirAntesDoAtual:
 
-   - ao inserir o elemento antes do elemento atual, o cursor continua por apontar para o elemento em que se encontrava antes da alteração(elemento atual);
-   - Ao tentar inserir um elemento sem que o cursor aponte para ninguém (lista vazia), é levantado um erro
-
-3. inserirAposAtual - ao inserir o elemento antes do elemento atual, o cursor continua por apontar para o elemento em que se encontrava antes da alteração(elemento atual);
+3. inserirAposAtual -
 
 4. inserirComoUltimo:
-   - caso nao haja nenhum elemento na lista, a função insere como primeiro;
-   - a função faz com que o cursor aponte para o elemento adicionado (último elemento);

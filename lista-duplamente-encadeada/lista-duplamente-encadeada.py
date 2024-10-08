@@ -3,107 +3,60 @@ class Elemento:
     def __init__(self, valor):
         self.__valor = valor
         self.__sucessor = None
+        self.__antecessor = None
     def setSucessor(self, sucessor):
         self.__sucessor = sucessor
     def getSucessor(self):
         return self.__sucessor
+    def setAntecessor(self, antecessor):
+        self.__antecessor = antecessor
+    def getAntecessor(self):
+        return self.__antecessor
     def setValor(self, valor):
         self.__valor = valor
     def getValor(self):
         return self.__valor
 
-class EmptyListError(Exception):
-    """Exceção levantada quando uma operação é realizada em uma lista encadeada vazia."""
-    pass
-
-class MinhaListaEncadeada:
-    def __init__(self):
+class MinhaListaDuplamenteEncadeada:
+    def __init__(self) -> None:
         self.__inicio = None
+        self.__fim = None
         self.__cursor = None
 
-# operacoes de cursor
-    def avançarKPosições(self, k ):
-        if self.__inicio:
-            avancar = k
-            while avancar > 0:
-                if not self.__cursor.getSucessor():
+    #operações de cursor
+    def __avancarKPosicoes(self, k):
+        if self.__fim != self.__cursor != None:
+            posicoes = k
+            while posicoes > 0:
+                if self.__cursor.getSucessor() == None:
                     break
                 self.__cursor = self.__cursor.getSucessor()
-                avancar -= 1
-        else:
-            print('Lista vazia')
+                posicoes -= 1
 
-    def retrocederKPosições (self, k):
-        return
+    def __retrocederKPosicoes(self, k):
+        if self.__inicio != self.__cursor != None:
+            posicoes = k
+            while posicoes > 0:
+                if self.__cursor.getAntecessor() == None:
+                    break
+                self.__cursor = self.__cursor.getAntecessor()
+                posicoes -= 1
+    
     def __irParaPrimeiro(self):
         self.__cursor = self.__inicio
 
     def __irParaUltimo(self):
-        while self.__cursor.getSucessor():
-            self.__cursor = self.__cursor.getSucessor()
+        self.__cursor = self.__fim
 
-
-
-# operacoes na lista
-    def acessarAtual(self):
+    #Funções de Lista
+    def acessarAtual(self) -> Elemento:
         if self.__cursor:
             return self.__cursor.getValor()
         else:
-            print('Lista vazia')
+            print('Lista Vazia')
+    
+    def inserirAntesAtual(self, valor) -> None:
+        novo = Elemento(valor)
+        if self.__cursor == self.__inicio:
+            
 
-    #método da visão além do alcance
-    def inserirAntesDoAtual (self, valorNovo):
-        novo = Elemento(valorNovo)
-        atual = self.__cursor
-        if self.__cursor:
-            if self.__cursor == self.__inicio:
-                novo.setSucessor(self.__inicio)
-                self.__inicio = novo
-                self.__cursor = self.__inicio
-            else:
-                self.__irParaPrimeiro()
-                proximo = self.__cursor.getSucessor()
-                while proximo != atual:
-                    self.__cursor = proximo
-                    proximo = self.__cursor.getSucessor()
-                novo.setSucessor(proximo)
-                self.__cursor.setSucessor(novo)
-                # cursor aponta novamente para o atual
-                self.__cursor = proximo
-        else:
-            raise EmptyListError
-        
-    def inserirApósAtual (self, valorNovo):
-        novo = Elemento(valorNovo)
-        novo.setSucessor(self.__cursor.getSucessor())
-        self.__cursor.setSucessor(novo)
-
-    def inserirComoUltimo (self,valorNovo):
-        novo = Elemento(valorNovo)
-        if self.__inicio:
-            self.__irParaUltimo()
-            self.__cursor.setSucessor(novo)
-            self.__cursor = novo
-        else:
-            self.__inicio = novo
-            self.__cursor = self.__inicio
-
-    def inserirComoPrimeiro (self, valorNovo):
-        novo = Elemento(valorNovo)
-        novo.setSucessor(self.__inicio)
-        self.__inicio = novo
-
-    def inserirNaPosicao ( k, novo ):
-        return
-    def excluirAtual ():
-        return
-    def excluirPrim ():
-        return
-    def excluirUlt ():
-        return
-    def excluirElem ( chave ):
-        return
-    def excluirApos ( k ):
-        return
-    def buscar ( chave ):
-        return
