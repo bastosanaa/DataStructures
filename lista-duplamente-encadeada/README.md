@@ -1,3 +1,7 @@
+# Aluna Ana Luiza Bastos
+
+# Trabalhinho 1 - Estrutura de dados
+
 # Documentação - MinhaListaDuplamenteEncadeada
 
 # Classes
